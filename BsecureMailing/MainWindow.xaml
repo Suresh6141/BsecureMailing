@@ -1,0 +1,645 @@
+﻿<RibbonWindow  x:Class="RibbonWin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"       
+  
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:RibbonWin="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Ribbon"
+        Title="BSecure Mailing" WindowState="Maximized" HorizontalAlignment="Center" Icon="logo_SWE_icon.ico" Background="#E7EBEF"  FontSize="10px"  >
+    <Window.Resources>
+        <Style x:Key="EntryFieldStyle" TargetType="Grid" >
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="20,0" />
+        </Style>
+        <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
+                <Setter Property="Margin" Value="5 7 5 5" />
+            </Style>
+       
+        <SolidColorBrush x:Key="OutlookButtonForeground" Color="#FF204D89"/>
+
+        <LinearGradientBrush x:Key="OutlookButtonBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFD9EDFF" Offset="0"/>
+            <GradientStop Color="#FFC0DEFF" Offset="0.445"/>
+            <GradientStop Color="#FFC0D9FB" Offset="1"/>
+            <GradientStop Color="#FFAFD1F8" Offset="0.53"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="OutlookButtonHighlight" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFFFBD69" Offset="0"/>
+            <GradientStop Color="#FFFFB75A" Offset="0.0967"/>
+            <GradientStop Color="#FFFFB14C" Offset="0.2580"/>
+            <GradientStop Color="#FFFB8C3C" Offset="0.3870"/>
+            <GradientStop Color="#FFFEB461" Offset="0.9677"/>
+            <GradientStop Color="#FFFEBB67" Offset="1"/>
+        </LinearGradientBrush>
+
+        <Style x:Key="OutlookTabControlStyle" TargetType="{x:Type TabControl}">
+            <Setter Property="Foreground" Value="{DynamicResource OutlookButtonForeground}"/>
+            <!--<Setter Property="Background" Value="{DynamicResource OutlookButtonBackground}"/>
+            <Setter Property="Background" Value="#DFE3E7"/>-->
+            <Setter Property="Background" Value="#E7EBEF" />
+            <!--<Setter Property="BorderBrush" Value="{x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>-->
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="MinWidth" Value="10"/>
+            <Setter Property="MinHeight" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <Grid ClipToBounds="true" SnapsToDevicePixels="true"
+                      KeyboardNavigation.TabNavigation="Local">
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="RowDefinition0" Height="AUto"/>
+                                <RowDefinition x:Name="RowDefinition1" Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="ColumnDefinition0"/>
+                                <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="ContentPanel" Grid.Column="0" Grid.Row="1"
+                        KeyboardNavigation.DirectionalNavigation="Contained"
+                        KeyboardNavigation.TabIndex="2"
+                        KeyboardNavigation.TabNavigation="Local">
+                                <Microsoft_Windows_Themes:ClassicBorderDecorator
+                        Background="{TemplateBinding Background}">
+                                    <!--BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderStyle="Raised"
+                        BorderThickness="{TemplateBinding BorderThickness}">-->
+                                    <ContentPresenter SnapsToDevicePixels=
+                            "{TemplateBinding SnapsToDevicePixels}" Margin="2,2,2,2"
+                            x:Name="PART_SelectedContentHost"
+                            ContentSource="SelectedContent"/>
+                                </Microsoft_Windows_Themes:ClassicBorderDecorator>
+                            </Grid>
+                            <StackPanel HorizontalAlignment="Stretch" Margin="0,-2,0,0"
+                    x:Name="HeaderPanel" VerticalAlignment="Bottom" Width="Auto" 
+                Height="Auto" Grid.Row="1" IsItemsHost="True"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="TabStripPlacement" Value="Bottom">
+                                <Setter Property="Grid.Row"
+                        TargetName="ContentPanel" Value="0"/>
+                                <Setter Property="Height"
+                            TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height"
+                            TargetName="RowDefinition1" Value="Auto"/>
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Left">
+                                <Setter Property="Grid.Row"
+                            TargetName="ContentPanel" Value="0"/>
+                                <Setter Property="Grid.Column"
+                            TargetName="ContentPanel" Value="1"/>
+                                <Setter Property="Width"
+                            TargetName="ColumnDefinition0" Value="Auto"/>
+                                <Setter Property="Width"
+                            TargetName="ColumnDefinition1" Value="*"/>
+                                <Setter Property="Height"
+                            TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height"
+                            TargetName="RowDefinition1" Value="0"/>
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Right">
+                                <Setter Property="Grid.Row"
+                            TargetName="ContentPanel" Value="0"/>
+                                <Setter Property="Grid.Column"
+                            TargetName="ContentPanel" Value="0"/>
+                                <Setter Property="Width"
+                            TargetName="ColumnDefinition0" Value="*"/>
+                                <Setter Property="Width"
+                            TargetName="ColumnDefinition1" Value="Auto"/>
+                                <Setter Property="Height"
+                            TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height"
+                            TargetName="RowDefinition1" Value="0"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground"
+                            Value="{DynamicResource
+                            {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="OutlookTabItemStyle" TargetType="{x:Type TabItem}">
+            <Setter Property="Padding" Value="12,2,12,2"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"  />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border SnapsToDevicePixels="true" x:Name="Bd"
+                    Background="{TemplateBinding Background}"
+                    BorderThickness="1" BorderBrush="#FF6593CF">
+                            <ContentPresenter SnapsToDevicePixels=
+                        "{TemplateBinding SnapsToDevicePixels}"
+                        Margin="{TemplateBinding Padding}"
+                VerticalAlignment="{Binding Path=VerticalContentAlignment,
+                RelativeSource={RelativeSource AncestorType=
+                        {x:Type ItemsControl}}}"
+                ContentSource="Header" RecognizesAccessKey="True"
+                            HorizontalAlignment="Left"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Selector.IsSelected" Value="True">
+                                <Setter Property="Background" TargetName="Bd"
+                Value="{DynamicResource OutlookButtonHighlight}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="45*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Ribbon x:Name="RibbonWin" Grid.Row="0" SelectedIndex="0">
+
+            <!-- Help Pane, located at the right-hand side -->
+            <Ribbon.HelpPaneContent>
+                <RibbonButton SmallImageSource="Images\help.png" />
+            </Ribbon.HelpPaneContent>
+            <!-- Quick Access Toolbar - located at the upper-left corner -->
+            <Ribbon.QuickAccessToolBar>
+                <RibbonQuickAccessToolBar>
+                    <RibbonButton x:Name ="Save" SmallImageSource="Images\save.png" />
+                    <RibbonSplitButton x:Name ="Undo" SmallImageSource="Images\undo.png" >
+                        <RibbonSplitMenuItem Header="Undo 1" />
+                        <RibbonSplitMenuItem Header="Undo 2" />
+                        <RibbonSplitMenuItem Header="Undo 3" />
+                    </RibbonSplitButton>
+                    <RibbonSplitButton x:Name="Redo" SmallImageSource="Images\redo.png" >
+                        <RibbonSplitMenuItem Header="Redo 1" />
+                        <RibbonSplitMenuItem Header="Redo 2" />
+                    </RibbonSplitButton>
+                </RibbonQuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>
+            <!-- Application Menu, located at the left-hand side (down arrow) -->
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu KeyTip="F">
+                    <RibbonApplicationMenuItem Header="Options" ImageSource="Images\options.png" />
+                    <RibbonApplicationMenuItem Header="Exit" ImageSource="Images\quit.png" />
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+            
+            <!-- Ribbon Tab #1: Home -->
+            <RibbonTab Header="Home" KeyTip="H" FontSize="9" >
+                
+                <!-- Home  group-->
+             
+
+                <!-- Employee And Payroll group-->
+                <!--<RibbonGroup x:Name="Employee" Header="Employee And Payroll">
+                    <RibbonMenuButton LargeImageSource="Images\personal.png" Label="Employee" KeyTip="V">
+                        <RibbonMenuItem ImageSource="Images\paste.png" Header="Keep Text Only" KeyTip="T"/>
+                        <RibbonMenuItem ImageSource="Images\paste.png" Header="Paste Special..." KeyTip="S"/>
+                    </RibbonMenuButton>
+                    <RibbonButton SmallImageSource="Images\save.png" Label="Save" KeyTip="X" />
+                    <RibbonButton SmallImageSource="Images\add.png" Label="Add" KeyTip="C" />
+
+                </RibbonGroup>-->
+                <RibbonGroup>
+                    
+                   <RibbonButton LargeImageSource ="Images\newemail3.png" Width="32px"   Label="New Email" x:Name="btnNewemail" KeyTip="N" Click="btnNewemail_Click" ></RibbonButton>
+                  
+                </RibbonGroup>
+                <RibbonGroup Header="delete">
+                    <RibbonMenuButton Label="Ignore" SmallImageSource="images/email_delete.png"  KeyTip="V">
+                       
+                    </RibbonMenuButton>
+                    <RibbonMenuButton Label="Clean Up" SmallImageSource="/Images/deleteenvelop.png"  KeyTip="V">
+                        <RibbonMenuItem></RibbonMenuItem>
+                    </RibbonMenuButton>
+                    <RibbonMenuButton Label="junk" SmallImageSource="/Images/user1-delete3.png"  KeyTip="V">
+                        <RibbonMenuItem></RibbonMenuItem>
+                    </RibbonMenuButton>
+                    <RibbonButton LargeImageSource="Images\deletered.png" Label="Delete Email" KeyTip="N" ></RibbonButton>
+                </RibbonGroup>
+
+                <RibbonGroup Header="Reply" >
+                    <RibbonButton Label="Reply" x:Name="btnReply" Click="btnReply_Click"  SmallImageSource="images/mail_reply.png"  KeyTip="V">
+
+                    </RibbonButton>
+                    <RibbonButton Label="Reply All" x:Name="btnreplyall" Click="btnreplyall_Click" SmallImageSource="images/BT_message_out-128 (1).png"  KeyTip="V">
+
+                    </RibbonButton>
+                    <RibbonButton Label="Forward" SmallImageSource="images/mail-go.png"  KeyTip="V">
+
+                    </RibbonButton>
+                    <RibbonMenuButton SmallImageSource="images/meeting.png"  KeyTip="V">
+                  
+                    </RibbonMenuButton>
+                    <RibbonMenuButton SmallImageSource="images/IM.png"  KeyTip="V">
+                        <RibbonMenuItem></RibbonMenuItem>
+                    </RibbonMenuButton>
+                    <RibbonMenuButton SmallImageSource="images/meeting2.png"  KeyTip="V">
+                        <RibbonMenuItem></RibbonMenuItem>
+                    </RibbonMenuButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Read" >
+                    <RibbonButton LargeImageSource="/Images/mail.png" Label="Read / UnRead" KeyTip="N" ></RibbonButton>
+                    <Image Source="/Images/documents-128.png" Width="20px" Height="20px" Margin="15,8"></Image>
+                    <TextBlock Text="Categorize" Width="50" TextAlignment="Center" TextWrapping="Wrap"  ></TextBlock>
+                    <!--<RibbonButton LargeImageSource ="/Images/documents-128.png" Label="Categorize" KeyTip="N" ></RibbonButton>-->
+                    <RibbonButton LargeImageSource="/Images\folow-flag-128.png" Label="Follow Up" KeyTip="N" ></RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Move">
+                    <RibbonButton LargeImageSource="Images\filetofolder.png" Label="Move" KeyTip="N" ></RibbonButton>
+                    <RibbonButton LargeImageSource="Images\folder.png" Label="Rules" KeyTip="N" ></RibbonButton>
+              
+                </RibbonGroup>
+                <RibbonGroup Header="Find">
+                    <TextBox Text="Find a Contact" Foreground="Gray" ></TextBox>
+                   
+                    <RibbonButton SmallImageSource ="Images\mail_read-filter-2-128.png" Label="Filter Email" KeyTip="N" ></RibbonButton>
+                    <RibbonButton SmallImageSource ="Images\address-book.png" Label="Address Book" KeyTip="N" ></RibbonButton>
+                </RibbonGroup>
+            
+                <RibbonGroup x:Name="ClipboardGroup" Header="Send / Receive">
+                    <RibbonMenuButton LargeImageSource="Images\envelope_mark_as_unread-128.png" Label="Send/Recieve All Folders" KeyTip="V">
+                        
+                    </RibbonMenuButton>
+                   
+                </RibbonGroup>
+            </RibbonTab>
+            
+            <!-- Ribbon Tab #2: Launch -->
+            <RibbonTab Header="Send / Recieve" KeyTip="I">
+                <!-- Launch/Applications group-->
+            
+               
+            </RibbonTab>
+
+            <RibbonTab Header="Folder" KeyTip="L">
+                <!-- Launch/Applications group-->
+
+            </RibbonTab>
+            <RibbonTab Header="View" KeyTip="L">
+                <!-- Launch/Applications group-->
+
+            </RibbonTab>
+        </Ribbon>
+        <!--<DockPanel Name="UIPanel" Grid.Row="1">
+            
+        </DockPanel>-->
+        <Grid  Grid.Row="1" Background="#E7EBEF"   VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="14*"></ColumnDefinition>
+                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                <ColumnDefinition Width="84*"></ColumnDefinition>
+               
+               
+            </Grid.ColumnDefinitions>
+
+
+            <TabControl  Grid.Row="0" Grid.Column="0"  VerticalAlignment="Stretch"   VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch"  Style="{DynamicResource OutlookTabControlStyle}"  SelectionChanged="TabControl_SelectionChanged">
+                <TabItem  Height="20" Style="{DynamicResource OutlookTabItemStyle}"  Foreground="{DynamicResource OutlookButtonForeground}">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="img"  Source="images/Mail32.png" />
+                            <TextBlock Text="Mail" Margin="2,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+
+                    <StackPanel VerticalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal"  >
+                            <Image  Source="/Images/list_down.png" Width="10px"></Image>
+                            <TextBlock Margin="10"  Text="suresh@gmail.com"></TextBlock>
+                        </StackPanel>
+                        <TreeView Margin="20,5,0,0"  ItemContainerStyle="{StaticResource TreeViewItemStyle}" SelectedItemChanged="treeviewID_SelectedItemChanged" BorderBrush="Transparent" x:Name="treeviewID" ItemsSource="{Binding}" Background="Transparent" >
+                            <TreeView.ItemTemplate>
+                                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                    <DockPanel>
+
+
+                                        <!--this Image Control will display the "icon" for each Tree item-->
+
+                                        <Image Width="16" Height="16" Source="{Binding ImageSource}"
+                           DockPanel.Dock="Left"/>
+
+
+                                        <!--this TextBlock will show the main "Caption" for each Tree item-->
+
+                                        <TextBlock Text="{Binding DisplayName}" FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               x:Name="DisplayName" Margin="2"/>
+
+
+                                        <!--this TextBlock will show the Item count-->
+
+                                        <TextBlock Text="{Binding ItemCount, StringFormat='({0})'}"
+                               VerticalAlignment="Center" Margin="2" x:Name="ItemCount">
+                                            <TextBlock.Foreground>
+                                                <SolidColorBrush Color="{Binding ItemCountColor}"/>
+                                            </TextBlock.Foreground>
+                                        </TextBlock>
+                                    </DockPanel>
+
+                                    <HierarchicalDataTemplate.Triggers>
+
+                                        <!--This DataTrigger will hide the ItemCount text 
+                         and remove the Bold font weight from the DisplayName text 
+                         when ItemCount is zero-->
+
+                                        <DataTrigger Binding="{Binding ItemCount}" Value="0">
+                                            <Setter TargetName="ItemCount" Property="Visibility" Value="Collapsed"/>
+                                            <Setter TargetName="DisplayName" Property="FontWeight" Value="Normal"/>
+                                        </DataTrigger>
+                                    </HierarchicalDataTemplate.Triggers>
+                                </HierarchicalDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>
+
+                    </StackPanel>
+
+                </TabItem>
+                <TabItem Height="20" Style="{DynamicResource OutlookTabItemStyle}" Background="{DynamicResource OutlookButtonBackground}" Foreground="{DynamicResource OutlookButtonForeground}">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="img2" Source="images/schedule.png" />
+                            <TextBlock Text="Calendar" Margin="2,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem Height="20" Style="{DynamicResource OutlookTabItemStyle}" Background="{DynamicResource OutlookButtonBackground}" Foreground="{DynamicResource OutlookButtonForeground}">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="img3"  Source="images/Contact32.png" />
+                            <TextBlock Text="Contacts" Margin="2,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+
+                </TabItem>
+                <TabItem  Height="20" Style="{DynamicResource OutlookTabItemStyle}" Background="{DynamicResource OutlookButtonBackground}" Foreground="{DynamicResource OutlookButtonForeground}">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="img4"  Source="images/date_task.png" />
+                            <TextBlock Text="Tasks" Margin="2,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+            </TabControl>
+            <GridSplitter Grid.Column="1" ResizeDirection="Columns" ResizeBehavior="PreviousAndNext"
+                                            HorizontalAlignment="Stretch" Background="#E7EBEF"  VerticalAlignment="Stretch" ></GridSplitter>
+            
+            <Border Margin="0,10"  Background="white" BorderBrush="Black"     BorderThickness="0.5"  Grid.Column="2">
+                <Grid  >
+                    <Grid.ColumnDefinitions  >
+                        <ColumnDefinition Width="39*" >
+                            
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"  >
+
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="60*"  >
+
+                        </ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0"  >
+                        <StackPanel Orientation="Vertical" Background="white"  >
+                            <StackPanel Background="#E7EBEF"  >
+
+                                <Border BorderBrush="Black" BorderThickness="0.5,0.5,0.5,0.5" Background="White"   Margin="5,5,5,5" >
+                                    <Grid VerticalAlignment="Center">
+                                        <TextBox >
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                                    <Style.Resources>
+                                                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Center" AlignmentY="Center" Stretch="None">
+                                                            <VisualBrush.Visual>
+                                                                <Label Content="Search" FontFamily="roboto" FontSize="10px" Foreground="Gray"  />
+                                                            </VisualBrush.Visual>
+                                                        </VisualBrush>
+                                                    </Style.Resources>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                                        </Trigger>
+                                                        <Trigger Property="Text" Value="{x:Null}">
+                                                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                                            <Setter Property="Background" Value="White" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </TextBox>
+                                        <!--<TextBox   BorderBrush="White"  Style="{StaticResource EntryFieldStyle}" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Stretch"   VerticalAlignment="Center"  Text="Search InBox" Foreground="Gray" FontFamily="roboto"></TextBox>-->
+                                        <Image Source="/Images/view.png" Width="16" Height="16px" HorizontalAlignment="Right" VerticalAlignment="Center" ></Image>
+                                    </Grid>
+
+                                </Border>
+                                <Border BorderBrush="Black" BorderThickness="0,0.5,0,0.5">
+                                    <Grid  Height="22" HorizontalAlignment="Stretch" >
+                                        <Grid    VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0">
+                                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="Arrange By: Conversations" Foreground="Black" HorizontalAlignment="Left"   FontWeight="Light" Margin="5" FontSize="9"></TextBlock>
+                                        </Grid>
+                                   <!--<Line HorizontalAlignment="Center" Stretch="Fill" Stroke="Black"  Y2 ="1"></Line>-->
+                                        <GridSplitter BorderBrush="Black" Background="Black"  Width="1" HorizontalAlignment="Center"  ></GridSplitter>
+                                        <Grid   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0"  >
+                                            <TextBlock   TextAlignment="Center" Text="Newest on Top" Foreground="Black"   FontWeight="Light" FontSize="9"></TextBlock>
+                                        </Grid>
+                                    
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                            <Separator Height="0.3" VerticalAlignment="Stretch" ></Separator>
+                            <StackPanel VerticalAlignment="Stretch" Background="White"  HorizontalAlignment="Stretch">
+                                <ListView  Margin="10,0,0,0" x:Name="lstHome" Height="Auto" ItemsSource="{Binding Items}"  MouseDoubleClick="lstHome_MouseDoubleClick" SelectionChanged="lstHome_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="Transparent" BorderThickness="0" Background="white" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal"  >
+                                                <StackPanel >
+                                                    <Image Source="/Images/Mail32.png" Width="14px" Height="14px" Margin="0,2,5,0"></Image>
+                                                </StackPanel>
+
+                                                <StackPanel  Orientation="Vertical" Width="Auto" HorizontalAlignment="Stretch"  >
+                                                    <TextBlock x:Name="txtsendername"  Text="{Binding mailfromname}" FontWeight="Normal" />
+                                                    <TextBlock x:Name="txtmailsubject" Foreground="Black" FontWeight="ExtraLight"  Text="{Binding mailsubject}" Width="Auto" TextAlignment="Left" TextTrimming="WordEllipsis" />
+                                                    <TextBlock x:Name="txttomail" Visibility="Collapsed" Text="{Binding mailtoname}"></TextBlock>
+                                                    <TextBlock x:Name="txtmailsenderid" Visibility="Collapsed" Text="{Binding mailfromID}"></TextBlock>
+                                                    <TextBlock x:Name="txtdatemail" Visibility="Collapsed" Text="{Binding maildate}"></TextBlock>
+                                                    <TextBlock x:Name="txtccto" Text="{Binding mailcc}" Visibility="Collapsed" ></TextBlock>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                       
+                             </ListView.ItemTemplate>
+                         
+                                    <!--<ListViewItem  HorizontalAlignment="Stretch" >
+                                        <StackPanel Orientation="Horizontal"  >
+                                            <StackPanel >
+                                                <Image Source="/Images/Mail32.png" Width="14px" Height="14px" Margin="0,2,5,0"></Image>
+                                            </StackPanel>
+
+                                            <StackPanel  Orientation="Vertical" Width="Auto" HorizontalAlignment="Stretch"  >
+                                                <TextBlock x:Name="txtsendername"  Text="Keerthi Thakur" FontWeight="Normal" />
+                                                <TextBlock x:Name="txtmailsubject" Foreground="Black" FontWeight="ExtraLight"  Text="[hyderabadh@ptgindia.com] Guide line for recording Attendence and Leaves" Width="Auto" TextAlignment="Left" TextTrimming="WordEllipsis" />
+                                                <TextBlock x:Name="txttomail" Visibility="Collapsed"></TextBlock>
+                                                <TextBlock x:Name="txtmailsenderid" Visibility="Collapsed" ></TextBlock>
+                                                <TextBlock x:Name="txtdatemail" Visibility="Collapsed" ></TextBlock>
+                                                <TextBlock x:Name="txtccto" Visibility="Collapsed" ></TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </ListViewItem>
+                                    <ListViewItem  HorizontalAlignment="Stretch" >
+                                        <StackPanel Orientation="Horizontal"  >
+                                            <StackPanel >
+                                                <Image Source="/Images/Mail32.png" Width="14px" Margin="0,2,5,0"></Image>
+                                            </StackPanel>
+
+                                            <StackPanel  Orientation="Vertical" Width="Auto" HorizontalAlignment="Stretch"  >
+                                                <TextBlock  Text="Nikunj  Thakker" FontWeight="Normal" />
+                                          
+                                                <TextBlock Foreground="Black" FontWeight="ExtraLight"  Text="Features of Nougat 7.0" Width="Auto" TextAlignment="Left" TextTrimming="WordEllipsis" />
+                                       
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </ListViewItem>
+                                    <ListViewItem HorizontalAlignment="Stretch" >
+                                        <StackPanel Orientation="Horizontal"  >
+                                            <StackPanel >
+                                                <Image Source="/Images/Mail32.png" Width="14px" Margin="0,2,5,0"></Image>
+                                            </StackPanel>
+
+                                            <StackPanel  Orientation="Vertical" Width="Auto" HorizontalAlignment="Stretch"  >
+                                                <TextBlock  Text="Mithun reddy" FontWeight="Normal" />
+                                                <TextBlock Text="Re:User Registration and Login" FontWeight="Normal"   />
+                                                <TextBlock Foreground="Black" FontWeight="ExtraLight"  Text="Hi,Ill talk to raghava, adn ask him for sdsd  confirmation" Width="Auto" TextAlignment="Left" TextTrimming="WordEllipsis" />
+                           
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </ListViewItem>
+                                    <ListViewItem HorizontalAlignment="Stretch" >
+                                        <StackPanel Orientation="Horizontal"  >
+                                            <StackPanel >
+                                                <Image Source="/Images/Mail32.png" Width="14px" Margin="0,2,5,0"></Image>
+                                            </StackPanel>
+
+                                            <StackPanel  Orientation="Vertical" Width="Auto" HorizontalAlignment="Stretch"  >
+                                                <TextBlock  Text="Mithun reddy" FontWeight="Normal" />
+                                                <TextBlock Text="Re:User Registration and Login" FontWeight="Normal"   />
+                                                <TextBlock Foreground="Black" FontWeight="ExtraLight"  Text="Hi,Ill talk to raghava, adn ask him for sdsd  confirmation" Width="Auto" TextAlignment="Left" TextTrimming="WordEllipsis" />
+                                       
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </ListViewItem>-->
+                                </ListView>
+                                </StackPanel>
+                            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                                <Image Source="/Images/list_down_white.png" Width="10"></Image>
+                                <TextBlock Margin="5" Text="Older"  FontWeight="Normal"  ></TextBlock>
+                            </StackPanel>-->
+                       </StackPanel>
+                    </Grid>
+               
+
+           
+                
+            <GridSplitter  Grid.Column="1" 
+                                            ResizeDirection="Columns"
+                                            ResizeBehavior="PreviousAndNext"
+                                            HorizontalAlignment="Stretch" Background="#E7EBEF" VerticalAlignment="Stretch"></GridSplitter>
+                    <Grid Grid.Column="2"  >
+                        <Grid x:Name="grdmailcontent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto">                                    
+                                </RowDefinition>
+                                <RowDefinition  Height="70*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" >
+                                <StackPanel Orientation="Vertical" Margin="10,0,0,0"  HorizontalAlignment="Stretch">
+                                    <TextBlock x:Name="txtSubject" Margin="5" Text="Re:User Registration and Login" FontSize="15px" FontWeight="SemiBold"></TextBlock>
+                                    <StackPanel Margin="5,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Image Source="/Images/Green_button.png" Width="8px" Height="8px" Margin="0,0,5,0" ></Image>
+                                        <TextBlock  x:Name="txtfromusername" Text="Suresh B" FontSize="15px"></TextBlock>
+                                        <TextBlock FontSize="15px">&lt;</TextBlock>
+                                        <TextBlock x:Name="txtfromEmail"  HorizontalAlignment="Stretch" FontSize="15px" Foreground="Black"  Text="suresh.burra@gmail.com"></TextBlock>
+                                        <TextBlock FontSize="15px">&gt;</TextBlock>
+                                    </StackPanel>
+
+                                    <StackPanel  Margin="0,5"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <TextBlock FontSize="12px" Text="sent :"  Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Left"  TextAlignment="Center"></TextBlock>
+                                        <TextBlock x:Name="txtdate"  FontSize="12px" Text="Wed 10/26/2016 10:52 AM"  Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Left"  TextAlignment="Center"></TextBlock>
+
+                                    </StackPanel>
+                                    <StackPanel Margin="0,5" Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <TextBlock Text="To :" FontSize="12px"  Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Left"  TextAlignment="Center"></TextBlock>
+                                        <Image Source="/Images/cube.png" Width="8px" Height="8px" Margin="0,0,5,0" ></Image>
+
+
+                                        <TextBlock x:Name="txtmailto" HorizontalAlignment="Stretch" FontSize="12px" Foreground="Black"  Text="sureshburra@ptgindia.com ;"></TextBlock>
+                                        <!--<Image Source="/Images/cube.png" Width="8px" Height="8px" Margin="0,0,5,0" ></Image>-->
+
+
+                                        <!--<TextBlock HorizontalAlignment="Stretch" FontSize="12px" Foreground="Black"  Text="suman@ptgindia.com"></TextBlock>-->
+                                    </StackPanel>
+                                    <StackPanel  Margin="0,5" Orientation="Horizontal"   HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <TextBlock Text="Cc :" FontSize="12px" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Left"  TextAlignment="Center"></TextBlock>
+                                        <Image Source="/Images/cube.png" Width="8px" Height="8px" Margin="0,0,5,0" ></Image>
+
+
+                                        <TextBlock  x:Name="txtCC"  HorizontalAlignment="Stretch" FontSize="12px" Foreground="Black"  Text="sureshburra@ptgindia.com"></TextBlock>
+
+                                    </StackPanel>
+                                    <Line  Stretch="Fill" StrokeDashArray="1.5" Stroke="LightGray" X2="1"></Line>
+                          
+
+                                </StackPanel>
+
+
+                            </Grid>
+                            <Grid Grid.Row="1" VerticalAlignment="Top">
+                                <WebBrowser   x:Name="wbView" VerticalAlignment="Top"  HorizontalAlignment="Stretch" ></WebBrowser>
+
+
+
+
+                            </Grid>
+                            
+                        </Grid>
+                    
+                    </Grid>
+          
+            </Grid>
+            </Border>
+         
+
+        </Grid>
+
+        <Separator Grid.Row="2" VerticalAlignment="Bottom" Margin="-5,0,-5,0" />
+        <Grid Background="#E7EBEF"    Grid.Row="3">
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0" >
+                <TextBlock FontSize="12" Text="Items :" Foreground="Black" FontWeight="ExtraLight" ></TextBlock>
+                <TextBlock FontSize="12" Text="4120" Foreground="Black" FontWeight="ExtraLight" ></TextBlock>
+                <TextBlock FontSize="12"  Margin="20,0,0,0"  Text="Unread :" Foreground="Black" FontWeight="ExtraLight" ></TextBlock>
+                <TextBlock  FontSize="12"  Text="128" Foreground="Black" FontWeight="ExtraLight" ></TextBlock>
+              
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock FontSize="12" Text="Last synced at 10/10/16, 5:50 pm." Foreground="Black" FontWeight="ExtraLight" ></TextBlock>
+                <TextBlock FontSize="12" Margin="30,0,0,0" Text="Not connected to Bsecure" Foreground="Black" FontWeight="ExtraLight" ></TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</RibbonWindow >

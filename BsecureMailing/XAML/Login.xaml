@@ -1,0 +1,105 @@
+﻿<Window x:Class="BsecureMailing.XAML.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BsecureMailing.XAML"
+        mc:Ignorable="d"
+        Title="Login" Background="#2793CF">
+
+    <Grid  >
+
+        <Grid.Background>
+            <SolidColorBrush Color="#2793Cf" ></SolidColorBrush>          
+        </Grid.Background>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*"></ColumnDefinition>
+                <ColumnDefinition Width="40*"></ColumnDefinition>
+                <ColumnDefinition Width="30*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="1" Margin="0,50,0,50"  BorderBrush="#1082C1" CornerRadius="4" Background="White"  >
+
+                <Grid VerticalAlignment="Top"  Margin="0,20,0,0" HorizontalAlignment="Stretch"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="0"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,20,0,0">
+
+                        <Image Grid.Column="0" Source="/Images/logo_iwatch.png" Width="150" ></Image>
+
+                    </Grid>
+
+                    <Border x:Name="border" Grid.Row="2">
+
+                        <Grid x:Name="grid"  Margin="0,0,0,0" HorizontalAlignment="Stretch" >
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="0.02*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="0.05*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Border Height="45"  Grid.Row="1"   Background="White" >
+
+                                <TextBlock  Foreground="#2793Cf" VerticalAlignment="Center"  FontWeight="SemiBold" FontSize="10" FontFamily="ROBOTO"   HorizontalAlignment="Center"  x:Name="txtUsername" Text="WELCOME BACK" ></TextBlock>
+
+                            </Border>
+                            <Border  BorderBrush="#2793Cf"   Grid.Row="2"   Background="White" >
+
+                              
+                            </Border>
+                            <Border  BorderBrush="#2793Cf" Margin="10" BorderThickness="2,2,2,2" CornerRadius="20" Height="40" HorizontalAlignment="Stretch"   Grid.Row="3"   Background="White" >
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" >
+
+                                    <Image Source="/Images/user2_blue.png" Margin="10" VerticalAlignment="Center"  Width="20" Height="20" HorizontalAlignment="Left" ></Image>
+                                    <TextBox Background="Transparent" BorderBrush="Transparent"   TextAlignment="Center" VerticalAlignment="Center" FontWeight="Light" Text="Email"  Foreground="Black" ></TextBox>
+                                </StackPanel>
+                             
+                            </Border>
+                            <Border  Height="10"   Grid.Row="4"   Background="White" >
+
+
+                            </Border>
+                            <Border Margin="10" BorderBrush="#2793Cf" BorderThickness="2,2,2,2" CornerRadius="20" Height="40" HorizontalAlignment="Stretch"  Grid.Row="5"   Background="White" >
+
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" >
+
+                                    <Image Source="/Images/lock_blue.png" Margin="10" VerticalAlignment="Center"  Width="20" Height="20" HorizontalAlignment="Left" ></Image>
+                                    <TextBox  BorderBrush="Transparent"  TextAlignment="Center" VerticalAlignment="Center" FontWeight="Light" Text="password"  Foreground="Black" ></TextBox>
+
+                                </StackPanel> 
+                            </Border>
+
+                            <CheckBox x:Name="checkBox" Height="15" Margin="20,0,0,0"  Background="Transparent" BorderBrush="#2793Cf"  Grid.Row="6" Foreground="Black"  Content="Remember me"  FontWeight="Light" FontSize="10"></CheckBox>
+                            <Border Margin="20" BorderBrush="White" Height="35"  CornerRadius="16"  Grid.Row="7" Background="#05c953" >
+                                <TextBlock Foreground="White" Text="Log In"  TextAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                            </Border>
+                            <Border Margin="0" BorderBrush="White" Height="35"  CornerRadius="16"  Grid.Row="8" >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Foreground="Black" FontFamily=" roboto" FontSize="10" Text="Don't have an account ?"  TextAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                                    <TextBlock Foreground="#2793Cf" FontWeight="Medium"  FontFamily=" roboto" FontSize="10" Text=" Register hear"  TextAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                                </StackPanel>
+                        
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                </Grid>
+            </Border>
+
+
+        </Grid>
+ 
+  
+    </Grid>
+</Window>
